@@ -3,6 +3,7 @@ import shuffle from "./utils/shuffle";
 import FormComp from "./components/FormComp";
 import ListKlp from "./components/ListKlp";
 import Ender from "./components/Ender";
+import Footer from "./components/Footer";
 import swal from "sweetalert";
 
 export default function App() {
@@ -35,6 +36,11 @@ export default function App() {
       const result = new Array(Math.ceil(randomMhs.length / nMhs))
         .fill()
         .map(() => mahasiswa.splice(0, nMhs));
+      swal({
+        title: "Kelompok Sudah Dibagi!",
+        text: "Kelompok sudah terbuat, silahkan saling mengandalkan!",
+        icon: "success",
+      });
       setNewMhs([...result]);
     } else {
       swal({
@@ -67,6 +73,7 @@ export default function App() {
         <ListKlp newMhs={newMhs} />
         <Ender />
       </div>
+      <Footer />
     </div>
   );
 }
