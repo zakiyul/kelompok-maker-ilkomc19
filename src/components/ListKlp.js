@@ -14,7 +14,7 @@ const ListKlp = ({ newMhs }) => {
                 className={`card border shadow-sm border-5 p-3 border-start border-${warnaRandom[idx]}`}
               >
                 <ol key={idx}>
-                  <h4>Kelompok {idx + 1}</h4>
+                  <h5>Kelompok {idx + 1}</h5>
                   {item.map((subItem, subIdx) => {
                     return <li key={subIdx}>{subItem}</li>;
                   })}

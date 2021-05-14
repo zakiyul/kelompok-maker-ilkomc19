@@ -2,6 +2,7 @@ import { useState } from "react";
 import shuffle from "./utils/shuffle";
 import FormComp from "./components/FormComp";
 import ListKlp from "./components/ListKlp";
+import Ender from "./components/Ender";
 import swal from "sweetalert";
 
 export default function App() {
@@ -18,23 +19,23 @@ export default function App() {
   const handleChange = (e) => {
     e.preventDefault();
     const value = e.target.value;
-    setMahasiswa(value.replace(/\n/g, " ").split(" "));
+    setMahasiswa(value.split("\n"));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const randomizeMhs = shuffle(mahasiswa);
-    if (randomizeMhs.length > 0) {
-      const result = new Array(Math.ceil(randomizeMhs.length / nMhs))
-        .fill()
-        .map(() => mahasiswa.splice(0, nMhs));
-      setNewMhs([...result]);
-    } else if (nMhs.length <= 0) {
+    const randomMhs = shuffle(mahasiswa);
+    if (nMhs === 0) {
       swal({
         title: "Jumlah Anggota Kosong!",
         text: "Isi jumlah anggota kelompok!",
         icon: "warning",
       });
+    } else if (randomMhs.length > 0) {
+      const result = new Array(Math.ceil(randomMhs.length / nMhs))
+        .fill()
+        .map(() => mahasiswa.splice(0, nMhs));
+      setNewMhs([...result]);
     } else {
       swal({
         title: "Data Kosong!",
@@ -64,6 +65,7 @@ export default function App() {
         />
         <hr />
         <ListKlp newMhs={newMhs} />
+        <Ender />
       </div>
     </div>
   );
